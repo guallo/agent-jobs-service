@@ -1,0 +1,10 @@
+pid=
+cert=development.crt
+key=development.key
+sslVersion=all
+foreground=yes
+
+[https]
+accept=127.0.0.1:8443
+connect=8000
+TIMEOUTclose=1
