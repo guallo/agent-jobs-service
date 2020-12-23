@@ -4,7 +4,7 @@
 
 1. On a console, run the Django development server using `HTTPS=1`:
 ```bash
-HTTPS=1 ./manage.py runserver
+HTTPS=1 ./manage.py runserver 8000
 ```
 
 2. On another console, run the stunnel proxy:
