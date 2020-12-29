@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 DOCKER_IMAGE="django-manage:latest"
+DOCKER_ENV=()
 
 format="{{.Repository}}"
 if [[ "$DOCKER_IMAGE" == *:* ]]; then
@@ -14,6 +15,10 @@ if ! docker images --format "$format" | grep -P "^.{${#DOCKER_IMAGE}}$" \
     popd 2> /dev/null
 fi
 
+if [[ -n "${HTTPS+x}" ]]; then
+    DOCKER_ENV+=("--env" "HTTPS=$HTTPS")
+fi
+
 container="$(echo "$DOCKER_IMAGE" | tr -d -c "[:alpha:][:digit:]")-container"
 exec docker run --name "$container" --rm -it --network=host \
-    "$DOCKER_IMAGE" "$@"
+    "${DOCKER_ENV[@]}" "$DOCKER_IMAGE" "$@"
