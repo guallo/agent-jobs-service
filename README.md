@@ -2,15 +2,33 @@
 
 ## Enabling HTTPS for development
 
-1. On a console, run the Django development server using `HTTPS=1`:
+### Method 1: using manage.py and stunnel separately
+
+On a console, run the Django development server using `HTTPS=1`
 ```bash
 HTTPS=1 ./manage.py runserver 8000
 ```
 
-2. On another console, run the stunnel proxy:
+and on another console, run the stunnel proxy
 ```bash
 cd stunnel
 stunnel config
 ```
 
-3. Now the service can be accessed through https://localhost:8443/api/
+now the service can be accessed through https://localhost:8443/api/
+
+### Method 2: using manage.sh to handle both manage.py and stunnel
+
+```bash
+HTTPS=1 ./manage.sh runserver 8000
+```
+
+and the service can be accessed through https://localhost:8443/api/
+
+### Method 3: using manage-docker.sh to handle both manage.py and stunnel in a container
+
+```bash
+HTTPS=1 ./manage-docker.sh runserver 8000
+```
+
+and the service can be accessed through https://localhost:8443/api/
